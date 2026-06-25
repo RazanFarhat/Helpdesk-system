@@ -6,30 +6,34 @@ const [description, setDescription] = useState("");
 const [categoryId, setCategoryId] = useState(1);
 const [priorityId, setPriorityId] = useState(1);
 const [statusId, setStatusId] = useState(1);
+const [attachment, setAttachment] = useState(null);
 
 const handleSubmit = async (e) => {
 e.preventDefault();
 
 
-console.log("BUTTON CLICKED");
+const formData = new FormData();
 
-const ticketData = {
-  title: title,
-  description: description,
-  category_id: categoryId,
-  priority_id: priorityId,
-  status_id: statusId,
-};
+formData.append("title", title);
+formData.append("description", description);
+formData.append("category_id", categoryId);
+formData.append("priority_id", priorityId);
+formData.append("status_id", statusId);
+
+if (attachment) {
+  formData.append("attachment", attachment);
+}
+for (let pair of formData.entries()) {
+  console.log(pair[0], pair[1]);
+}
+
 
 try {
   const response = await fetch(
     "http://127.0.0.1:8000/api/tickets",
     {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(ticketData),
+      body: formData,
     }
   );
 
@@ -44,6 +48,7 @@ try {
   setCategoryId(1);
   setPriorityId(1);
   setStatusId(1);
+  setAttachment(null);
 
 } catch (error) {
   console.error(error);
@@ -115,7 +120,9 @@ Create Ticket </h1>
 
       <select
         value={categoryId}
-        onChange={(e) => setCategoryId(Number(e.target.value))}
+        onChange={(e) =>
+          setCategoryId(Number(e.target.value))
+        }
       >
         <option value={1}>Hardware</option>
         <option value={2}>Software</option>
@@ -124,7 +131,9 @@ Create Ticket </h1>
 
       <select
         value={priorityId}
-        onChange={(e) => setPriorityId(Number(e.target.value))}
+        onChange={(e) =>
+          setPriorityId(Number(e.target.value))
+        }
       >
         <option value={1}>Low</option>
         <option value={2}>Medium</option>
@@ -133,12 +142,27 @@ Create Ticket </h1>
 
       <select
         value={statusId}
-        onChange={(e) => setStatusId(Number(e.target.value))}
+        onChange={(e) =>
+          setStatusId(Number(e.target.value))
+        }
       >
         <option value={1}>Open</option>
         <option value={2}>In Progress</option>
         <option value={3}>Closed</option>
       </select>
+
+      <div>
+        <label>Attachment</label>
+        <br />
+
+        <input
+          type="file"
+          onChange={(e) =>
+            setAttachment(e.target.files[0])
+          }
+        />
+        <p>{attachment ? attachment.name : "No file selected"}</p>
+      </div>
 
       <button
         type="submit"

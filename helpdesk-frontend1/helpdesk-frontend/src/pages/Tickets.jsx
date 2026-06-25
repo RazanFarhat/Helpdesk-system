@@ -216,6 +216,21 @@ setTickets(refreshedTickets);
             <strong>Status:</strong>{" "}
             {ticket.status?.name}
           </p>
+          <p>
+  <strong>Attachment:</strong>
+</p>
+
+{ticket.attachment && (
+  <img
+    src={`http://127.0.0.1:8000/storage/${ticket.attachment}`}
+    alt="attachment"
+    width="150"
+    style={{
+      borderRadius: "8px",
+      marginTop: "10px",
+    }}
+  />
+)}
 
           <button
             onClick={() =>

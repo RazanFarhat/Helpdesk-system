@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Ticket extends Model
 {
     protected $fillable = [
-        'title',
-        'description',
-        'category_id',
-        'priority_id',
-        'status_id'
-    ];
+    'title',
+    'description',
+    'category_id',
+    'priority_id',
+    'status_id',
+    'attachment'
+];
 
     public function category()
     {
