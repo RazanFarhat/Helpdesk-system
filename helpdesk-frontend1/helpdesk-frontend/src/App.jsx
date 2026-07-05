@@ -1,43 +1,23 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Login from "./pages/Login";
+import Layout from "./components/Layout";
 import Tickets from "./pages/Tickets";
 import CreateTicket from "./pages/CreateTicket";
+import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import Notifications from "./pages/Notifications";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={<Login />}
-        />
+        <Route path="/" element={<Login />} />
 
-        <Route
-          path="/tickets"
-          element={<Tickets />}
-        />
-
-        <Route
-          path="/create-ticket"
-          element={<CreateTicket />}
-        />
-
-        <Route
-          path="/dashboard"
-          element={<Dashboard />}
-        />
-
-        <Route
-          path="/notifications"
-          element={<Notifications />}
-        />
+        <Route element={<Layout />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/tickets" element={<Tickets />} />
+          <Route path="/create-ticket" element={<CreateTicket />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

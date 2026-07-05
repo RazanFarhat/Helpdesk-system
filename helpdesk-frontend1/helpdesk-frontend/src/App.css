@@ -182,3 +182,31 @@
     border-right-color: var(--border);
   }
 }
+.navbar {
+  background-color: #1e293b;
+  color: white;
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo {
+  margin: 0;
+  font-size: 22px;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.navbar-links a:hover {
+  text-decoration: underline;
+}
