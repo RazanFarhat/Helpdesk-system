@@ -1,6 +1,7 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Notifications from "./pages/Notifications";
 import Layout from "./components/Layout";
 import Tickets from "./pages/Tickets";
 import CreateTicket from "./pages/CreateTicket";
@@ -17,6 +18,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/tickets" element={<Tickets />} />
           <Route path="/create-ticket" element={<CreateTicket />} />
+          <Route path="/notifications" element={<Notifications />} />
         </Route>
       </Routes>
     </BrowserRouter>
